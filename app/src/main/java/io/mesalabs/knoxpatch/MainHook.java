@@ -22,6 +22,7 @@ import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 import io.mesalabs.knoxpatch.hooks.AuthFwHooks;
+import io.mesalabs.knoxpatch.hooks.DKeyHooks;
 import io.mesalabs.knoxpatch.hooks.FastHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxDARHooks;
 import io.mesalabs.knoxpatch.hooks.KnoxGuardHooks;
@@ -104,6 +105,10 @@ public class MainHook implements IXposedHookLoadPackage {
 
                 if (Constants.SAMSUNG_HEALTH_PACKAGE_NAME.equals(lpparam.packageName)) {
                     new SamsungHealthHooks().handleLoadPackage(lpparam);
+                }
+
+                if (Constants.DKEY_PACKAGE_NAME.equals(lpparam.packageName)) {
+                    new DKeyHooks().handleLoadPackage(lpparam);
                 }
             } break;
 
